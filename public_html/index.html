@@ -3,20 +3,55 @@
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
+
+Sprint Backlog: 
+Record IP address of visitor.
+Store list of images already displayed and skip/ allow n uses.
+Add sound visualisation option- makes a difference to results?
+
+Product Backlog:
+Allow user modified sounds if they disagree, include ML to adapt future sounds.
 -->
 <html>
     <head>
         <title>The Texture-Sound Game!</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script>     </script>
-            
+        <script></script>
+
     </head>
     <body>
-        <div>Can you tell which picture was used to create the sound?</div>
+        <div>
+            <H1>Click on the picture that is generating the sound!</H1>
+        </div>
+        <img width="200" height="200" id="leftPicture" alt="some image" style="border:2px groove grey" >
+        <img width="200" height="200" id="rightPicture" alt="some image" style="border:2px groove grey" >
+        <div></div>
+        <audio controls>
+<!--            <source src="horse.ogg" type="audio/ogg">
+            <source src="horse.mp3" type="audio/mpeg">-->
+            Your browser does not support the audio element.
+        </audio>
+
         <form>
-            
+            <!-- fulfill HTML brief reqs here-->
         </form>
+        <script>
+            //JS code here...
+            window.onload = choosePic;
+
+            var myPix = new Array("images/rastrograms/image1.bmp", 
+            "images/rastrograms/image2.bmp", 
+            "images/rastrograms/image3.bmp");
+
+            function choosePic() {
+                //TODO ensure different pics chosen
+                var randomNum = Math.floor(Math.random() * myPix.length);
+                document.getElementById("leftPicture").src = myPix[randomNum];
+                randomNum = Math.floor(Math.random() * myPix.length);
+                document.getElementById("rightPicture").src = myPix[randomNum];
+            }
+        </script>
     </body>
-    
+
 </html>
