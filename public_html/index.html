@@ -41,7 +41,7 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
         </form>
         <script>
             //JS code here...
-            var nImages = 20;
+            var nImages = 100;
             var myPix = [];
             window.onload = start;
 
@@ -53,6 +53,8 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
             }
 
             function initArray() {
+                //Use a better way to load the number of images I need (~2-5),
+                //rather than filling a large array every time the page is loaded?
                 for (var i = 1; i <= nImages; i++) {
                     var iPath = "images/rastrograms/image" + i + ".bmp";
                     myPix.push(iPath);
