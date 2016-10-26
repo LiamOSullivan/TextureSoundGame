@@ -1,0 +1,35 @@
+/*
+Styles for the Texture Game site
+*/
+/* 
+    Created on : 26-Oct-2016, 12:02:51
+    Author     : Liam O'Sullivan
+*/
+
+br {
+    content: " ";
+    display: block;
+    margin: 10px;
+}
+
+p {
+    text-align: left;
+    color: black;
+    display: block;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    margin-left: 3;
+    margin-right: 3;
+}
+
+input[type=submit] {
+
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+}
