@@ -42,7 +42,8 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
         <div align=center>
 
             <audio id="sound1" controls>
-                <source  src="audio/default.mp3" type="audio/mpeg" >               
+                <source  type="audio/mpeg" >
+                <source  type="audio/wav" >
                 Your browser does not support the audio element.
             </audio>
 
@@ -54,32 +55,39 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
             //JS code here...
             var nImages = 100;
             var imageArray = [];
+            var soundArray = [];
 
             function imageClickEvent(n) {
                 console.log(n.valueOf());
                 checkChoice(n);
-                initPics();
-                initSound();
-                setTimeout(playSound, 1000);
-
-
+                chooseImages();
+                setTimeout(playSound, 1000); //delay start of playback
             }
 
             function checkChoice(n) {
 
             }
 
-            function initArray() {
+            function initImageArray() {
                 //Use a better way to load the number of images I need (~2-5),
                 //rather than filling a large array every time the page is loaded?
-                for (var i = 1; i <= nImages; i++) {
+                for (var i = 0; i <= nImages; i++) {
                     var iPath = "images/rastrograms/image" + i + ".bmp";
                     imageArray.push(iPath);
                 }
                 console.log("imageArray has " + imageArray.length + " elements");
             }
+            function initSoundArray() {
+                for (var i = 0; i <= nImages; i++) {
+                    //var iPath = "sounds/" + i + ".mp3"; //TODO
+                    //var iPath = "sounds/1.mp3";      //placeholder  
+                    var iPath = "sounds/audio-numbers/" + i + ".wav";
+                    soundArray.push(iPath);
+                }
+                console.log("soundArray has " + soundArray.length + " elements");
+            }
 
-            function initPics() {
+            function chooseImages() {
                 //TODO ensure different pics chosen
                 var randomNum1 = Math.floor(Math.random() * imageArray.length);
                 document.getElementById("leftPicture").src = imageArray[randomNum1];
@@ -94,13 +102,17 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
                 document.getElementById("rightPicture").onclick = function () {
                     imageClickEvent(2)
                 };
-                initSound();
+
+                console.log("load images " + randomNum1 + " and " + randomNum2);
+                //pick one of the 2 random numbers to use that sound index
+                var picked = Math.random() < 0.5 ? randomNum1 : randomNum2;
+                console.log("picking sound " + picked);
+                chooseSound(picked);
 
             }
 
-            function initSound() {
-
-
+            function chooseSound(n) {
+                document.getElementById("sound1").src = soundArray[n];
             }
 
             function playSound() {
@@ -111,15 +123,15 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
 
             }
 
-            window.onload = start;
-
             function start() {
 
-                initArray();
-                initPics();
-                setTimeout(playSound, 1000);
+                initImageArray();
+                initSoundArray();
+                chooseImages(); //chooseSound() is called from here
+                setTimeout(playSound, 1000); //delay playback
 
             }
+            window.onload = start;
         </script>
     </body>
 
