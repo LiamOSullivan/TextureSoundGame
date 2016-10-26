@@ -57,12 +57,15 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
             var nImages = 100;
             var imageArray = [];
             var soundArray = [];
-            var volumeLevel = 0.3;
+            var volumeLevel = 0.3; //updated by volume control
             var s1 = document.getElementById("sound1");
-
+            
+            
+            
             function imageClickEvent(n) {
                 console.log(n.valueOf());
                 checkChoice(n);
+                saveData();
                 chooseImages();
                 setTimeout(playSound, 1000); //delay start of playback
             }
