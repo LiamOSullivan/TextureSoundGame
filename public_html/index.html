@@ -12,13 +12,16 @@
     </head>
     <body>
         <div>
-            <H1>Tell us a little about you...</H1>
+            <H1>Tell me a little about you (for research)</H1>
             <br>
         </div>
 
         <form action="level1.html">
-            <p>First name: <input type="text" name="fname"><br>
+            <p>First name: <input type="text" name="fname" required><br>
             Last name: <input type="text" name="lname"><br>
+            </p>
+            <!--TODO: remove need for this when live-->
+            <p>Email address: <input type="text" name="fname" required><br>
             </p>
             <p>
             <input type="radio" name="gender" value="male"> Male <br>
@@ -32,10 +35,16 @@
             <input type="radio" name="age" value="over 65"> Over 65 <br>
             <input type="radio" name="age" value="rather not say"> I'd rather not say <br>
             </p>
-            <p>
+<!--            <p>
             <input type="radio" name="experience" value="musician"> I'm a professional musician/ producer etc. <br>
-            <input type="radio" name="experience" value="hobbyist"> I'm a hobbyist musician <br>
+            <input type="radio" name="experience" value="hobbyist"> I'm an amateur musician/ hobbyist <br>
             <input type="radio" name="experience" value="non-musician"> I'm not a musician <br>
+            </p>-->
+            <p>
+            <!--These are just for the brief, will work out what I need to know later...-->
+            <input type="checkbox" name="musician" value="musician">I make music (for fun or professionally)<br> 
+            <input type="checkbox" name="programmer" value="programmer">I code computer programs<br> 
+            <input type="checkbox" name="experience" value="musician">I play computer games <br>
             </p>
             <br>
             <p><input type="submit" value="Play the game!"></p>

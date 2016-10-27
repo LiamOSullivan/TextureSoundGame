@@ -64,6 +64,7 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
             var testImage1 = document.getElementById("leftPicture");
             var testImage2 = document.getElementById("rightPicture");
             var ntestsPerLevel = 5;
+            var nTestsCompleted = 0;
             var testScore = 0;
             var scoreDisplay = document.getElementById("score");
             //var scoreFontColor = document.getElementById("scoreColor");
@@ -149,28 +150,38 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
 
             function imageClickEvent(n) {
                 console.log(n.valueOf()); //echo selcted image id
-                if (n == soundId) {
-                    console.log("***correct!***"); //echo selcted image id
-                    testScore+=1;
-                    var str = "&#10004; SCORE: "+testScore; //TODO: better way than this?
-                    var strColor = str.fontcolor("green");
-                    scoreDisplay.innerHTML = strColor;
-                    
-                    
+                if (testScore < 4) {
+                    if (n == soundId) {
+                        console.log("***correct!***"); //echo selcted image id
+                        testScore += 1;
+                        nTestsCompleted += 1;
+                        var str = "&#10004; SCORE: " + testScore + " / " + nTestsCompleted; //TODO: better way than this?
+                        var strColor = str.fontcolor("green");
+                        scoreDisplay.innerHTML = strColor;
+
+
+                    }
+                    else {
+                        console.log("***incorrect!***"); //echo selcted image id
+                        nTestsCompleted += 1;
+                        var str = "&#10008 SCORE: " + testScore + " / " + nTestsCompleted;
+                        var strColor = str.fontcolor("red");
+                        scoreDisplay.innerHTML = strColor;
+                    }
+                    //saveData();
+                    chooseImages();
+                    setTimeout(playSound, 1000); //delay start of playback
                 }
                 else {
-                    console.log("***incorrect!***"); //echo selcted image id
-                    var str = "&#10008 SCORE: "+testScore;
-                    var strColor = str.fontcolor("red");
-                    scoreDisplay.innerHTML = strColor;
+                    var str = "&#10004; 5 CORRECT!"; 
+                        var strColor = str.fontcolor("orange");
+                        scoreDisplay.innerHTML = strColor;
+                        setTimeout(nextLevel, 2000);
                 }
-                //saveData();
-                chooseImages();
-                
-                setTimeout(playSound, 1000); //delay start of playback
             }
+            function nextLevel() {
 
-
+            }
 
             function start() {
 
