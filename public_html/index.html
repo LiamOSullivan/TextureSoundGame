@@ -12,7 +12,7 @@
         <script type="text/javascript">
             //JS form validation - TODO: remove when live
             function validateForm() {
-                
+
                 var e = document.forms["userData"]["email"];
                 if (e.value == null || e.value == "") {
                     //alertString+"Email must be filled out";
@@ -23,9 +23,18 @@
                     return false;
                 }
                 else {
-                    var str = "Thank you for your email address"
-                    str = str.fontcolor("green");
-                    document.getElementById("emailH").innerHTML = str;
+                    if (validateEmail(e.value))
+                    {
+                        var str = "Thank you for your email address"
+                        str = str.fontcolor("green");
+                        document.getElementById("emailH").innerHTML = str;
+                    }
+                    else {
+                        var str = "Email address must be valid"
+                        str = str.fontcolor("red");
+                        document.getElementById("emailH").innerHTML = str;
+                        return false;
+                    }
                 }
 
 
@@ -34,7 +43,6 @@
                     str = str.fontcolor("red");
                     document.getElementById("genderH").innerHTML = str;
                     return false;
-
                 }
                 else {
                     var str = "Thank you for your gender info"
@@ -47,7 +55,6 @@
                     str = str.fontcolor("red");
                     document.getElementById("ageH").innerHTML = str;
                     return false;
-
                 }
                 else {
                     var str = "Thank you for your age info!"
@@ -58,14 +65,21 @@
                 return true; //won't get here if any false above
 
             }
-            function validateRadio(radios)
+            function validateRadio(rbGrp)
             {
-                for (i = 0; i < radios.length; ++i)
+                for (i = 0; i < rbGrp.length; ++i)
                 {
-                    if (radios [i].checked)
+                    if (rbGrp[i].checked)
                         return true;
                 }
                 return false;
+            }
+
+            function validateEmail(eml) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                var val = re.test(eml);
+                console.log("email validation is " + val)
+                return val;
             }
 
         </script>

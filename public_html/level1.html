@@ -27,7 +27,7 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="js/tests.js"></script>
-        <link rel="stylesheet" type="text/css" href="texturegame.css">
+        <link rel="stylesheet" type="text/css" href="css/texturegame.css">
 
 
     </head>
@@ -58,22 +58,12 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
             <!-- fulfill HTML brief reqs here-->
         </form>
         <script>
-            //called on page load event
-            function start() {
-
-                initImageArray();
-                initSoundArray();
-                chooseImages(); //chooseSound() is called from here
-                setTimeout(playSound, 1000); //delay playback
-
-            }
-            window.onload = start;
+              //called on page load event
             //'Global' variables
             var nImages = 100;
             var imageArray = [];
             var soundArray = [];
-            var volumeLevel = 0.3; //updated by volume control
-            var testSound = document.getElementById("sound1"); //sound playing
+            
             var soundID = -1;
             var testImage1 = document.getElementById("leftPicture");
             var testImage2 = document.getElementById("rightPicture");
@@ -83,6 +73,15 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
             var scoreDisplay = document.getElementById("score");
             //var scoreFontColor = document.getElementById("scoreColor");
             var debug = true;
+            
+            
+            var testSound = document.getElementById("sound1"); //sound playing
+            var volumeLevel = 0.3; //updated by volume control
+            //volume change event
+            testSound.onvolumechange = function () {
+                volumeLevel = testSound.volume; //store the change to volume level 
+                console.log("The volume has been changed to " + testSound.volume);
+            };
 
             //store the details of the current test
 //            var test = {
@@ -97,7 +96,17 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
 
             //var tests = []; //will be saved on completion of test level
 
-            
+
+
+            function start() {
+
+                initImageArray();
+                initSoundArray();
+                chooseImages(); //chooseSound() is called from here
+                setTimeout(playSound, 1000); //delay playback
+
+            }
+            window.onload = start;
         </script>
     </body>
 

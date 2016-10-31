@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+          
+
 function initImageArray() {
     //Use a better way to load the number of images I need (~2-5),
     //rather than filling a large array every time the page is loaded?
@@ -73,12 +75,6 @@ function deHighlightImage(img) {
 
     img.style.border = "4px solid black";
 }
-
-//volume change event
-testSound.onvolumechange = function () {
-    volumeLevel = testSound.volume; //store the change to volume level 
-    console.log("The volume has been changed to " + testSound.volume);
-};
 
 //image click event
 function imageClickEvent(n) {
