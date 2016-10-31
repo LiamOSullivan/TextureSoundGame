@@ -9,6 +9,69 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/texturegame.css">
+        <script type="text/javascript">
+            //JS form validation - TODO: remove when live
+            function validateForm() {
+                
+                var e = document.forms["userData"]["email"];
+                if (e.value == null || e.value == "") {
+                    //alertString+"Email must be filled out";
+                    //alert("Email must be filled out");// 
+                    var str = "Please enter an email address:"
+                    str = str.fontcolor("red");
+                    document.getElementById("emailH").innerHTML = str;
+                    return false;
+                }
+                else {
+                    var str = "Thank you for your email address"
+                    str = str.fontcolor("green");
+                    document.getElementById("emailH").innerHTML = str;
+                }
+
+
+                if (!validateRadio(document.forms["userData"]["gender"])) {
+                    var str = "Please pick a gender option:"
+                    str = str.fontcolor("red");
+                    document.getElementById("genderH").innerHTML = str;
+                    return false;
+
+                }
+                else {
+                    var str = "Thank you for your gender info"
+                    str = str.fontcolor("green");
+                    document.getElementById("emailH").innerHTML = str;
+                }
+
+                if (!validateRadio(document.forms["userData"]["age"])) {
+                    var str = "Please pick an age option:"
+                    str = str.fontcolor("red");
+                    document.getElementById("ageH").innerHTML = str;
+                    return false;
+
+                }
+                else {
+                    var str = "Thank you for your age info!"
+                    str = str.fontcolor("green");
+                    document.getElementById("ageH").innerHTML = str;
+                }
+
+                return true; //won't get here if any false above
+
+            }
+
+
+
+            function validateRadio(radios)
+            {
+                for (i = 0; i < radios.length; ++i)
+                {
+                    if (radios [i].checked)
+                        return true;
+                }
+                return false;
+            }
+
+        </script>
     </head>
     <body>
         <div>
@@ -16,38 +79,43 @@
             <br>
         </div>
 
-        <form action="level1.html">
-            <p>First name: <input type="text" name="fname" required><br>
-            Last name: <input type="text" name="lname"><br>
-            </p>
+        <form name="userData" action="level1.html" onsubmit="return validateForm()">
+            <!--auto validation-->
+
+            <H2>First name:</H2><input type="text" name="fname" required> (required)<br> 
+            <H2>Last name:</H2><input type="text" name="lname"><br>
             <!--TODO: remove need for this when live-->
-            <p>Email address: <input type="text" name="fname" required><br>
-            </p>
-            <p>
+            <!--validate via js function below-->
+
+            <H2 id="emailH" >Email address: </H2><input type="text" name="email" > (required)<br>
+
+
+            <H2 id="genderH">Gender:</H2><br>
             <input type="radio" name="gender" value="male"> Male <br>
             <input type="radio" name="gender" value="female"> Female <br>
             <input type="radio" name="gender" value="other/ rather not say"> Other/ I'd rather not say <br>
-            </p>
-            <p>
+
+            <H2 id="ageH"> Age:</H2><br>
             <input type="radio" name="age" value="under 18"> Under 18 <br>
             <input type="radio" name="age" value="18-35"> 18 - 35 <br>
             <input type="radio" name="age" value="36-65"> 36 - 65 <br>
             <input type="radio" name="age" value="over 65"> Over 65 <br>
             <input type="radio" name="age" value="rather not say"> I'd rather not say <br>
-            </p>
-<!--            <p>
-            <input type="radio" name="experience" value="musician"> I'm a professional musician/ producer etc. <br>
-            <input type="radio" name="experience" value="hobbyist"> I'm an amateur musician/ hobbyist <br>
-            <input type="radio" name="experience" value="non-musician"> I'm not a musician <br>
-            </p>-->
-            <p>
+
+            <!--            <p>
+                        <input type="radio" name="experience" value="musician"> I'm a professional musician/ producer etc. <br>
+                        <input type="radio" name="experience" value="hobbyist"> I'm an amateur musician/ hobbyist <br>
+                        <input type="radio" name="experience" value="non-musician"> I'm not a musician <br>
+                        </p>-->
+            <h2>Please tick as many as apply to you:</h2><br>
             <!--These are just for the brief, will work out what I need to know later...-->
             <input type="checkbox" name="musician" value="musician">I make music (for fun or professionally)<br> 
             <input type="checkbox" name="programmer" value="programmer">I code computer programs<br> 
             <input type="checkbox" name="experience" value="musician">I play computer games <br>
-            </p>
+
             <br>
-            <p><input type="submit" value="Play the game!"></p>
+            <input type="submit" value="Play the game!">
         </form>
+
     </body>
 </html>

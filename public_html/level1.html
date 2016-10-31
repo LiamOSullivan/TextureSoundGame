@@ -35,8 +35,12 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
         <div align="center">
             <H1>Click on the picture you think is making the sound!</H1>
             <br>
-            <img width="200" height="200" id="leftPicture" alt="a texture image" style="border:2px groove grey" >
-            <img width="200" height="200" id="rightPicture" alt="a texture image" style="border:2px groove grey" >
+            <img onmouseover="highlightImage(this)" onmouseout="deHighlightImage(this)"
+                 width="200" height="200" id="leftPicture" alt="a texture image" 
+                 style="border:4px solid black" >
+            <img onmouseover="highlightImage(this)" onmouseout="deHighlightImage(this)"
+                 width="200" height="200" id="rightPicture" alt="a texture image" 
+                 style="border:4px solid black" >
             <br>
         </div>
         <div align=center>
@@ -142,12 +146,24 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
                 testSound.play();
 
             }
+            //Various event handlers...
 
+            function highlightImage(img) {
+                img.style.border="4px solid springgreen";
+
+            }
+            function deHighlightImage(img) {
+                
+                img.style.border="4px solid black";
+            }
+
+            //volume change event
             testSound.onvolumechange = function () {
                 volumeLevel = testSound.volume; //store the change to volume level 
                 console.log("The volume has been changed to " + testSound.volume);
             };
 
+            //image click event
             function imageClickEvent(n) {
                 console.log(n.valueOf()); //echo selcted image id
                 if (testScore < 4) {
@@ -173,16 +189,16 @@ FW: Allow user modified sounds if they disagree, include ML to adapt future soun
                     setTimeout(playSound, 1000); //delay start of playback
                 }
                 else {
-                    var str = "&#10004; 5 CORRECT!"; 
-                        var strColor = str.fontcolor("orange");
-                        scoreDisplay.innerHTML = strColor;
-                        setTimeout(nextLevel, 2000);
+                    var str = "&#10004; 5 CORRECT!";
+                    var strColor = str.fontcolor("orange");
+                    scoreDisplay.innerHTML = strColor;
+                    setTimeout(nextLevel, 2000);
                 }
             }
             function nextLevel() {
 
             }
-
+            //called on page load event
             function start() {
 
                 initImageArray();
