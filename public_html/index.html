@@ -39,7 +39,7 @@
                 else {
                     var str = "Thank you for your gender info"
                     str = str.fontcolor("green");
-                    document.getElementById("emailH").innerHTML = str;
+                    document.getElementById("genderH").innerHTML = str;
                 }
 
                 if (!validateRadio(document.forms["userData"]["age"])) {
@@ -58,9 +58,6 @@
                 return true; //won't get here if any false above
 
             }
-
-
-
             function validateRadio(radios)
             {
                 for (i = 0; i < radios.length; ++i)
@@ -75,7 +72,7 @@
     </head>
     <body>
         <div>
-            <H1>Tell me a little about you (for research)</H1>
+            <H1>Please tell me a little about yourself </H1>
             <br>
         </div>
 
